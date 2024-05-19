@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from .forms import voiceCloneForm
 from gradio_client import Client
+import os
 
 # Create your views here.
 def index(request):
@@ -35,9 +36,16 @@ async def voiceCloneView(request):
             print("api stuff done")
             print(result)
             print(result[1])
-            response = HttpResponse(result[1], content_type="audio/wav")
-            response["Content-Disposition"] = "attachment; filename=voiceClone.wav"
-            return CustomSchemeResponse(response)
+            fname=result[1]
+            f = open(fname,"rb") 
+            response = HttpResponse()
+            response.write(f.read())
+            response['Content-Type'] ='audio/wav'
+            response['Content-Length'] =os.path.getsize(fname )
+            return response
+            # response = HttpResponse(result[1], content_type="audio/wav")
+            # response["Content-Disposition"] = "attachment; filename=voiceClone.wav"
+            # return CustomSchemeResponse(response)
             # return CustomSchemeResponse(result[1],
             # headers={
             #     "Content-Type": "audio/vnd.wav",
