@@ -26,7 +26,7 @@ async def voiceCloneView(request):
             result = client.predict(
 		        prompt,	# str  in 'Text Prompt' Textbox component
 		        "en_default",	# str (Option from: [('en_default', 'en_default'), ('en_us', 'en_us'), ('en_br', 'en_br'), ('en_au', 'en_au'), ('en_in', 'en_in'), ('es_default', 'es_default'), ('fr_default', 'fr_default'), ('jp_default', 'jp_default'), ('zh_default', 'zh_default'), ('kr_default', 'kr_default')]) in 'Style' Dropdown component
-		        "C:\\Users\\noh\\Downloads\\actualllytruummmp.mp4",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
+		        "C:\\Users\\noh\\Downloads\\elonreal.mp3",	# str (filepath on your computer (or URL) of file) in 'Reference Audio' Audio component
 		        True,	# bool  in 'Agree' Checkbox component
 		        fn_index=1
             )
@@ -42,6 +42,7 @@ async def voiceCloneView(request):
             response.write(f.read())
             response['Content-Type'] ='audio/wav'
             response['Content-Length'] =os.path.getsize(fname )
+            response['Content-Disposition'] = 'attachment; filename=clonedVoice.wav'
             return response
             # response = HttpResponse(result[1], content_type="audio/wav")
             # response["Content-Disposition"] = "attachment; filename=voiceClone.wav"

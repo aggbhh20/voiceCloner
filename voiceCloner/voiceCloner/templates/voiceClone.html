@@ -1,5 +1,21 @@
 <!DOCTYPE html>
+<head>
+    <title>Elon Voice Cloner</title>
+    <style>
+        h1 {
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
 <body>
+    <h1>Elon Voice Cloner</h1>
     <form action= /voiceClone/voiceClone/ method="POST">
         {% csrf_token %}
         {{ form }}
